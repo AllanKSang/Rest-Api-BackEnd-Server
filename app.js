@@ -2,9 +2,14 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+mongoose.connect('mongodb+srv://blacknblueadmin:' + process.env.MONGO_ATLAS_PW + '@cluster0.9pq6y4b.mongodb.net/?retryWrites=true&w=majority', {
+    useMongoClient: true
+});
 
 app.use(morgan('dev'));//For logging requests on the console
 
